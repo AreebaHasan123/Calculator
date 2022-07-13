@@ -1,0 +1,10 @@
+workspace(SingleProjectWorkspace){
+
+	assignment3.mpc
+
+	./stack	
+
+}
+workspace(AllFilesWorkspace){
+
+}
