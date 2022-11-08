@@ -1,17 +1,30 @@
-#ifndef _SUBTRACT_COMMAND_H_
-#define _SUBTRACT_COMMAND_H_
-#include "Expr_Command.h"
+//Daniel Kobold
+//CSCI363 PA3
+//Subtract_Command.h
 
+// Honor Pledge:
+//
+// I pledge that I have neither given nor received any help
+// on this assignment.
 
-class Subtract_Command: public Expr_Command
+#ifndef _CS363_SUBTRACT_COMMAND_H_
+#define _CS363_SUBTRACT_COMMAND_H_
+
+#include "Binary_Op_Command.h"
+
+class Subtract_Command : public Binary_Op_Command
 {
-        public:
-		Subtract_Command (Stack <int> & s): s_(s) {prec=0;}
-                virtual int execute(void);
-                //Subtract_Command(void);
-		//virtual int execute(Stack<int> & s_);
-        private:
-                Stack <int> & s_;
+public:
+	//Constructor - doesn't do anything
+	Subtract_Command (Stack<int> & s);
+	
+	//Evaluate - returns (n1 - n2)
+	int evaluate (int n1, int n2);	
+	
+	//Get precedence level
+	int getPrecedence (void);
 };
 
-#endif
+#include "Subtract_Command.cpp"
+
+#endif	// !defined _CS363_SUBTRACT_COMMAND_H_

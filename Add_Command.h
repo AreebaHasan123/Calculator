@@ -1,15 +1,30 @@
-#ifndef _ADD_COMMAND_H_
-#define _ADD_COMMAND_H_
-#include "Expr_Command.h"
+//Daniel Kobold
+//CSCI363 PA3
+//Add_Command.h
 
+// Honor Pledge:
+//
+// I pledge that I have neither given nor received any help
+// on this assignment.
 
-class Add_Command: public Expr_Command{
-	public:
-		//Add_Command(void);
-		//virtual int execute (Stack <int> & s_);		
-		Add_Command (Stack <int> & s): s_(s) {prec=0;}
-		virtual int execute(void);
-	private:
-		Stack <int> & s_;	
+#ifndef _CS363_ADD_COMMAND_H_
+#define _CS363_ADD_COMMAND_H_
+
+#include "Binary_Op_Command.h"
+
+class Add_Command : public Binary_Op_Command
+{
+public:
+	//Constructor - calls Binary_Op_Command constructor
+	Add_Command (Stack<int> & s);
+	
+	//Execute - completes addition
+	int evaluate (int n1, int n2);
+	
+	//Get precedence level
+	int getPrecedence (void);
 };
-#endif
+
+#include "Add_Command.cpp"
+
+#endif	// !defined _CS363_ADD_COMMAND_H_

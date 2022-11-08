@@ -1,14 +1,24 @@
-#include "Multiply_Command.h"
+//Daniel Kobold
+//CSCI363 PA3
+//Multiply_Command.cpp
 
-//Multiply_Command::Multiply_Command(void)
+// Honor Pledge:
+//
+// I pledge that I have neither given nor received any help
+// on this assignment.
 
-//{}
-//int Multiply_Command::execute(Stack<int>& s_)
-int Multiply_Command::execute(void)
+Multiply_Command::Multiply_Command (Stack<int> & s) 
+	:Binary_Op_Command(s)
 {
+	//Does nothing else
+}
 
-        int n2 = s_.pop(), n1 = s_.pop();
-        s_.push(n1 * n2);
+int Multiply_Command::evaluate (int n1, int n2)
+{
+	return n1 * n2;		//Return product
+}
 
-
+int Multiply_Command::getPrecedence(void)
+{
+	return 3;
 }

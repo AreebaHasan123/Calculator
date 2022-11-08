@@ -1,17 +1,32 @@
-#ifndef _DIVIDE_COMMAND_H_
-#define _DIVIDE_COMMAND_H_
-#include "Expr_Command.h"
+//Daniel Kobold
+//CSCI363 PA3
+//Divide_Command.h
 
+// Honor Pledge:
+//
+// I pledge that I have neither given nor received any help
+// on this assignment.
 
-class Divide_Command: public Expr_Command
+#ifndef _CS363_DIVIDE_COMMAND_H_
+#define _CS363_DIVIDE_COMMAND_H_
+
+#include <exception>
+#include <string>
+#include "Binary_Op_Command.h"
+
+class Divide_Command : public Binary_Op_Command
 {
-        public:
-            
-		Divide_Command (Stack <int> & s): s_(s) {prec=1;}
-                virtual int execute(void);
-                //Divide_Command(void);
-		//virtual int execute(Stack <int> & s_);
-        private:
-                Stack <int> & s_;
+public:
+	//Constructor
+	Divide_Command (Stack<int> & s);
+	
+	//Execute
+	int evaluate (int n1, int n2);	
+	
+	//Get precedence level
+	int getPrecedence (void);
 };
-#endif
+
+#include "Divide_Command.cpp"
+
+#endif	// !defined _CS363_DIVIDE_COMMAND_H_

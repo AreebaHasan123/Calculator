@@ -1,10 +1,4 @@
-workspace(SingleProjectWorkspace){
-
+workspace(assignment3)
+{
 	assignment3.mpc
-
-	./stack	
-
-}
-workspace(AllFilesWorkspace){
-
 }

@@ -1,5 +1,5 @@
    // -*- C++ -*-
-// $Id: Stack.h 380 2010-02-08 05:10:33Z hillj $
+// $Id: Queue.h 2018-09-26 dkobold $
 
 //==============================================================================
 /**
@@ -10,19 +10,19 @@
  */
 //==============================================================================
 
-#ifndef _CS507_STACK_H_
-#define _CS507_STACK_H_
+#ifndef _CS507_QUEUE_H_
+#define _CS507_QUEUE_H_
 
 #include "Array.h"
 #include <exception>
 
 /**
- * @class Stack
+ * @class Queue
  *
- * Basic stack for abitrary elements.
+ * Basic queue for abitrary elements.
  */
 template <typename T>
-class Stack
+class Queue
 {
 public:
   /// Type definition of the type.
@@ -31,7 +31,7 @@ public:
   /**
    * @class empty_exception
    *
-   * Exception thrown to indicate the stack is empty.
+   * Exception thrown to indicate the Queue is empty.
    */
   class empty_exception : public std::logic_error
   {
@@ -59,16 +59,17 @@ public:
 		//Allowing the exception message to be specified
 		//at the place the exception occurs/is thrown
 	  }
+	  
   };
 
   /// Default constructor.
-  Stack (void);
+  Queue (void);
 
   /// Copy constructor.
-  Stack (const Stack & s);
+  Queue (const Queue & s);
 
   /// Destructor.
-  ~Stack (void);
+  ~Queue (void);
 
   /**
    * Assignment operator
@@ -76,64 +77,76 @@ public:
    * @param[in]      rhs           Right-hand side of operator
    * @return         Reference to self
    */
-  const Stack & operator = (const Stack & rhs);
+  const Queue & operator = (const Queue & rhs);
 
   /**
-   * Push a new \a element onto the stack. The element is inserted
-   * before all the other elements in the list.
+   * "Adds the element to the end of the list"
+   * 
    *
    * @param[in]      element       Element to add to the list
    */
-  void push (T element);
+  void enqueue (T element);
 
   /**
-   * Remove the top-most element from the stack.
-   *
-   * @exception      empty_exception    The stack is empty.
+   * "Removes the element at the front of the list"
+   * @return 		 Element at the front of the list.
+   * @exception      empty_exception    The queue is empty.
    */
-  void pop (void);
+  T dequeue (void);
+  
+  //Return front element of queue
+  T front (void) const;
+  
+  //Return index of front element of queue (for testing)
+  size_t frontInd (void) const;
+  
+  //Return index of rear element of queue (for testing)
+  size_t rearInd (void) const;
 
   /**
-   * Get the top-most element on the stack. If there are no element 
-   * on the stack, then the stack_is_empty exception is thrown.
+   * Test if the queue is empty
    *
-   * @return         Element on top of the stack.
-   * @exception      empty_exception    The stack is empty
-   */
-  T top (void) const;
-
-  /**
-   * Test if the stack is empty
-   *
-   * @retval         true          The stack is empty
-   * @retval         false         The stack is not empty
+   * @retval         true          The queue is empty
+   * @retval         false         The queue is not empty
    */
   bool is_empty (void) const;
 
   /**
-   * Number of element on the stack.
+   * Number of element on the queue.
    *
-   * @return         Size of the stack.
+   * @return         Size of the queue.
    */
   size_t size (void) const;
+  
+  /**
+   * Number of element on the queue.
+   *
+   * @return         Size of the queue.
+   */
+  size_t max_size (void) const;
 
-  /// Remove all elements from the stack.
+  /// Remove all elements from the queue.
   void clear (void);
   
-  // Return element of the stack (for testing)
-  T get (size_t index) const;
+  // Return element of queue (for testing)
+  T get(size_t index) const;
 
 private:
   // COMMENT There is no need to allocate the array on the heap. Always try to
   // allocate on the stack to reduce the complexity of your code.
   // RESPONSE The array is now allocated on the stack instead of the heap
-	Array<T> stackArray_;
+  Array<T> queueArray_;
+  
+  // These are for keeping track of which parts of the circular queue are
+  // the front and back of the actual queue
+  size_t qFront_;
+  size_t qRear_;
 };
 
 // include the inline files
-#include "Stack.inl"
+#include "Queue.inl"
 
 // include the source file since template class
-#include "Stack.cpp"
+#include "Queue.cpp"
 
-#endif  // !defined _CS507_STACK_H_
+#endif  // !defined _CS507_QUEUE_H_
